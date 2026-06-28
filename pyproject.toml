@@ -1,0 +1,117 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llmagent"
+dynamic = ["version"]
+description = "LLM驱动的智能Agent框架 - 具备记忆、规划、反思、协作等AI能力"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Vincent-chao-lang", email = "qiupengchao@users.noreply.github.com"}
+]
+keywords = ["llm", "agent", "ai", "framework", "automation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+
+dependencies = [
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+# API服务依赖
+api = [
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.0",
+    "websockets>=11.0",
+]
+
+# CLI工具依赖
+cli = [
+    "click>=8.1.0",
+    "rich>=13.4.0",
+]
+
+# LLM提供商
+anthropic = [
+    "anthropic>=0.18.0",
+]
+
+openai = [
+    "openai>=1.0.0",
+]
+
+# 完整功能（all = api + cli + anthropic + openai）
+all = [
+    "llm-agent[api,cli,anthropic,openai]",
+]
+
+# 开发依赖
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "httpx>=0.24.0",
+]
+
+[project.scripts]
+llm-agent = "llm_agent.cli.main:cli"
+
+[project.urls]
+Homepage = "https://github.com/Vincent-chao-lang/AutoAgent"
+Repository = "https://github.com/Vincent-chao-lang/AutoAgent"
+Documentation = "https://github.com/Vincent-chao-lang/AutoAgent#readme"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.dynamic]
+version = {attr = "llm_agent.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["llm_agent*"]
+exclude = [
+    "tests*",
+    "demo*",
+    "__pycache__",
+]
+
+[tool.setuptools.package-data]
+"llm_agent.config" = ["*.yaml"]  # 配置文件在 src/llm_agent/config/ 子目录
+
+# ==================== 工具配置 ====================
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+addopts = "-v"
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
