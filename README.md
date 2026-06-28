@@ -716,6 +716,19 @@ python demo_multi_agent.py
 
 ## 📚 深入学习
 
+### 🎯 项目架构总览
+**[完整项目架构图](PROJECT_ARCHITECTURE.md)** - 全面阐述项目价值、架构和技术亮点
+- 🏗️ 分层架构设计
+- 🌟 五大技术亮点详解
+- 📊 性能对比与价值量化
+- 🎯 核心竞争力分析
+
+**[可视化架构图](ARCHITECTURE_DIAGRAM.md)** - Mermaid交互式图表
+- 📊 项目演进路径可视化
+- 🎨 技术架构流程图
+- 🔍 数据流处理管道
+- 🎯 完整技术栈生态
+
 ### 深度技术文档
 - **[智能上下文管理原理](docs/CONTEXT_MANAGEMENT_DEEPEN.md)** - 五维度压缩算法详解
 - **[工具系统深度增强](docs/TOOL_SYSTEM_DEEPEN.md)** - 工具链编排和缓存策略
